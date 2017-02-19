@@ -1,0 +1,14 @@
+sudo: required
+dist: trusty
+install:
+  - npm install -g firebase-tools
+script:
+  - mkdir -p public
+  - cp -R images index.html *.pdf public/
+after_success:
+  - firebase deploy --non-interactive --token $FIREBASE_TOKEN --project scalacontractors-5b130
+cache:
+  directories:
+    - $HOME/.npm
+env:
+  secure: "..."
